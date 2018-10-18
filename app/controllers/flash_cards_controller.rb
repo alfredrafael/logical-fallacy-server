@@ -18,7 +18,7 @@ class FlashCardsController < ApplicationController
     @flash_card = FlashCard.new(flash_card_params)
 
     if @flash_card.save
-      render json: @flash_card, status: :created, location: @flash_card
+      render json: @flash_card, status: :created
     else
       render json: @flash_card.errors, status: :unprocessable_entity
     end
