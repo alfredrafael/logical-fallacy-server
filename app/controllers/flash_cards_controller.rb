@@ -1,16 +1,21 @@
+
+
 class FlashCardsController < ApplicationController
-  before_action :set_flash_card, only: [:show, :update, :destroy]
+  before_action :set_flash_card, only: %i[show update destroy]
 
   # GET /flash_cards
   def index
     @flash_cards = FlashCard.all
 
-    render json: @flash_cards
+   render json: @flash_cards
   end
 
   # GET /flash_cards/1
   def show
+   # render json: Flash_card.find(params[:id])
+
     render json: @flash_card
+
   end
 
   # POST /flash_cards
