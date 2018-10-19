@@ -1,6 +1,6 @@
 
 
-class FlashCardsController < ApplicationController
+class FlashCardsController < OpenReadController
   before_action :set_flash_card, only: %i[show update destroy]
 
   # GET /flash_cards
@@ -20,7 +20,7 @@ class FlashCardsController < ApplicationController
 
   # POST /flash_cards
   def create
-    @flash_card = FlashCard.new(flash_card_params)
+    @flash_card = current_user.flashCards.build(flash_card_params)
 
     if @flash_card.save
       render json: @flash_card, status: :created
@@ -44,6 +44,7 @@ class FlashCardsController < ApplicationController
   end
 
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_flash_card
       @flash_card = FlashCard.find(params[:id])
@@ -53,4 +54,16 @@ class FlashCardsController < ApplicationController
     def flash_card_params
       params.require(:flash_card).permit(:fallacy_name, :fallacy_example)
     end
+
+##########################################################
+  # def set_current_user
+  #   @user = current_user.flash_cards.find(params[:id])
+  # end
+
+  # def user_params
+  #   params.require(:user).permit(:text)
+  # end
+
+  # private :set_user, :user_params
+  
 end

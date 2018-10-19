@@ -1,8 +1,8 @@
 #!/bin/bash
 
-curl --include --request POST 'http://localhost:4741/flash_cards' \
+curl --include --request PATCH "http://localhost:4741/flash_cards/${ID}" \
   --header "Content-Type: application/json" \
-  --header "Authorization: Token token=${TOKEN}" \
+    --header "Authorization: Token token=${TOKEN}" \
   --data '{
     "flash_card": {
       "fallacy_name": "'"${F_NAME}"'",
