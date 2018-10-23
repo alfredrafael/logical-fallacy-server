@@ -45,7 +45,7 @@ class FlashCardsController < OpenReadController
   end
 
   def set_flash_card
-    @flash_card = current_user.flash_card.find(params[:id])
+    @flash_card = current_user.flash_cards.find(params[:id])
   end
 
   def flash_card_params

@@ -5,6 +5,7 @@ class UsersController < ProtectedController
 
   # POST '/sign-up'
   def signup
+    puts params
     user = User.create(user_creds)
     if user.valid?
       render json: user, status: :created
@@ -48,10 +49,19 @@ class UsersController < ProtectedController
 
   private
 
-  def user_creds
+  def user_creds  ##########uncommented this one to do the other one
     params.require(:credentials)
           .permit(:email, :password, :password_confirmation)
   end
+
+  # def user_creds
+  #   user = User.create(user_creds)
+  #   if user.valid?
+  #     render json: user, status: :created
+  #   else
+  #     render json: user.errors, status: :bad_request
+  #   end
+  # end
 
   def pw_creds
     params.require(:passwords)
