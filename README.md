@@ -1,15 +1,84 @@
 Rails[![General Assembly Logo](https://camo.githubusercontent.com/1a91b05b8f4d44b5bbfb83abac2b0996d8e26c92/687474703a2f2f692e696d6775722e636f6d2f6b6538555354712e706e67)](https://generalassemb.ly/education/web-development-immersive)
 
-# rails-api-template
+# Repository of Examples on Logical Fallacies
 
-A template for starting projects with `rails-api`. Includes authentication.
+This app is a repository of examples for users to read and create. The client version of this repository can be found [here](https://alfredrafael.github.io/logical-fallacy-client/) and the backend version, [here](https://logical-fallacy-app.herokuapp.com/)
 
-At the beginning of each cohort, update the versions in [`Gemfile`](Gemfile).
+## Technologies used
 
-## Prerequisites
+* Ruby
+* Rails
+* PostgreSQL
+* curl-scripts
 
--   [rails-api-examples-walkthrough](https://git.generalassemb.ly/ga-wdi-boston/rails-api-examples-walkthrough)
+## Logical Fallacies API
 
+Find below the documentation for using this API. The Authentication resource will be followed by the Workouts resource.
+
+Scripts are included in [`curl-scripts`](curl-scripts) to test built-in actions. You can test user authentication and CRUD to the workouts resource.
+
+[Entity Relationship Diagram](https://imgur.com/LCANsXZ "User - Workouts Relationship Diagram")
+
+### Authentication
+
+| Verb   | URI Pattern            | Controller#Action |
+|--------|------------------------|-------------------|
+| POST   | `/sign-up`             | `users#signup`    |
+| POST   | `/sign-in`             | `users#signin`    |
+| PATCH  | `/change-password`     | `users#changepw`  |
+| DELETE | `/sign-out`            | `users#signout`   |
+
+#### POST /sign-up
+
+Request:
+
+```sh
+curl http://localhost:4741/sign-up \
+  --include \
+  --request POST \
+  --header "Content-Type: application/json" \
+  --data '{
+    "credentials": {
+      "email": "'"${EMAIL}"'",
+      "password": "'"${PASSWORD}"'",
+      "password_confirmation": "'"${PASSWORD}"'"
+    }
+  }'
+```
+
+#### POST /sign-in
+
+Request:
+
+```sh
+curl http://localhost:4741/sign-in \
+  --include \
+  --request POST \
+  --header "Content-Type: application/json" \
+  --data '{
+    "credentials": {
+      "email": "'"${EMAIL}"'",
+      "password": "'"${PASSWORD}"'"
+    }
+  }'
+```
+
+## Logical Fallacies Table: 
+```
+rails-api-template_development-# \d
+                    List of relations
+ Schema |         Name         |   Type   |    Owner     
+--------+----------------------+----------+--------------
+ public | ar_internal_metadata | table    | alfredrafael
+ public | examples             | table    | alfredrafael
+ public | examples_id_seq      | sequence | alfredrafael
+ public | flash_cards          | table    | alfredrafael
+ public | flash_cards_id_seq   | sequence | alfredrafael
+ public | schema_migrations    | table    | alfredrafael
+ public | users                | table    | alfredrafael
+ public | users_id_seq         | sequence | alfredrafael
+(8 rows)
+```
 ## Dependencies
 
 Install with `bundle install`.
@@ -33,7 +102,7 @@ Install with `bundle install`.
     `RailsApiTemplate`).
 1.  Rename your project database in `config/database.yml` (change
     `'rails-api-template'`).
-
+<!-- 
 ### Setup Environment:
 1.  Install dependencies with `bundle install`.
 1.  `git add` and `git commit` your changes.
@@ -335,7 +404,7 @@ bin/rails db:migrate db:seed db:examples
 ```sh
 heroku run rails db:migrate VERSION=0
 heroku run rails db:migrate db:seed db:examples
-```
+``` -->
 
 ## Additional Resources
 - [rails-heroku-setup-guide](https://git.generalassemb.ly/ga-wdi-boston/rails-heroku-setup-guide)
