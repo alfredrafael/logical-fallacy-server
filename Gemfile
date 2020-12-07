@@ -3,7 +3,7 @@
 source 'https://rubygems.org'
 ruby '2.5.0'
 
-gem 'active_model_serializers', '~> 0.10.6'
+gem 'active_model_serializers', '~> 0.10.11'
 gem 'bcrypt', '~> 3.1.11'
 gem 'pg', '~> 0.21'
 gem 'puma', '~> 3.11.2'
